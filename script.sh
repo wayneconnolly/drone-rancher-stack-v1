@@ -5,10 +5,10 @@
 tar -zxvf rancher-compose.tar.gz
 mv rancher-compose-*/rancher-compose /bin/.
 chmod +x /bin/rancher-compose
-git clone ${PLUGIN_REPO} /repo
+git clone ${PLUGIN_REPO} /rancher
 /bin/rancher-compose \
  --url http://${PLUGIN_URL}/v1 \
  --access-key ${PLUGIN_ACCESSKEY} \
  --secret-key ${PLUGIN_SECRETKEY} \
- -f /repo/${PLUGIN_PATH}/docker-compose.yml -r /repo/${PLUGIN_PATH}/rancher-compose.yml \
+ -f /rancher/${PLUGIN_PATH}/docker-compose.yml -r /rancher/${PLUGIN_PATH}/rancher-compose.yml \
  --verbose -p ${PLUGIN_STACK} up -p -d --force-upgrade --confirm-upgrade
