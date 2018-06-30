@@ -1,6 +1,7 @@
 #!/bin/sh
 ls /
-ls /rancher/*
+pwd
+ls /rancher/
 /bin/rancher-compose \
  --url http://${PLUGIN_URL}/v1 \
  --access-key ${PLUGIN_ACCESSKEY} \
