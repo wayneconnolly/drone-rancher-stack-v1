@@ -1,9 +1,11 @@
 #!/bin/sh
-DOCKER_COMPOSE=`find / -name docker-compose.yml`
 RANCHER_COMPOSE=`find / -name rancher-compose.yml`
-cat ${DOCKER_COMPOSE}
+DOCKER_COMPOSE=`find / -name docker-compose.yml`
+echo "rancher-compose.yml @ ${RANCHER_COMPOSE}\n" 
 cat ${RANCHER_COMPOSE}
-echo "ls rancher" && ls rancher/
+echo "\n\ndocker-compose.yml @ ${DOCKER_COMPOSE}\n"
+cat ${DOCKER_COMPOSE}
+echo "\n\nDeploying Rancher Stack with force upgrade\n\n"
 /bin/rancher-compose \
  --url http://${PLUGIN_URL}/v1 \
  --access-key ${PLUGIN_ACCESSKEY} \
