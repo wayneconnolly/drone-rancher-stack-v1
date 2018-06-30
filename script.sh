@@ -1,4 +1,5 @@
 #!/bin/sh
+find / -name docker-compose.yml
 echo "pwd" && pwd
 echo "ls" && ls /
 echo "ls rancher" && ls /rancher/
