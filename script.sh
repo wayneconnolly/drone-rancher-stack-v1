@@ -1,7 +1,8 @@
 #!/bin/sh
-ls /
-pwd
-ls /rancher/
+echo "pwd" && pwd
+echo "ls" && ls /
+echo "ls rancher" && ls /rancher/
+cd /rancher && ls .
 /bin/rancher-compose \
  --url http://${PLUGIN_URL}/v1 \
  --access-key ${PLUGIN_ACCESSKEY} \
