@@ -1,6 +1,6 @@
 # drone-rancher-stack-v1
 
-A drone.io Rancher Stack plugin 
+A drone.io Rancher Stack plugin to deploy/update an entire Rancher stack (not just a single service). 
 
 ## Plugin Details
 -   [Rancher v1.6 stable compatible](https://rancher.com/docs/rancher/v1.6/en/)
@@ -20,24 +20,23 @@ Note: [Rancher v2](https://rancher.com/docs/rancher/v2.x/en/) will be a new plug
 ## Parameter Reference
 The plugin requires the following:
 
-    image
-dubc/drone-rancher-stack-v1  
+image
+: dubc/drone-rancher-stack-v1  
 
-    url
-The url where your rancher resides. E.g rancher.domain.com
+url
+: The url where your rancher resides. E.g rancher.domain.com
 
-    stack
-This stack must already exist in your rancher environment. E.g app-staging
+stack
+: This stack must already exist in your rancher environment. E.g app-staging
 
-    accesskey
-Your Rancher environment Access_Key
+accesskey
+: Your Rancher environment Access_Key
 
-    secretkey
-Your Rancher environment Secret_Key
+secretkey
+: Your Rancher environment Secret_Key
 
-    pull: true
-
-Makes sure you get the latest plugin version
+pull
+: Makes sure you get the latest plugin version. E.g true
 
 ## Drone Pipeline Example
 
@@ -51,7 +50,7 @@ Makes sure you get the latest plugin version
     
       docker-registry-push:
         image: plugins/docker
-        repo: registry.domain.com:5000/app-docit-io
+        repo: registry.domain.com:5000/app
         registry: registry.domain.com:5000
         username: REGISTRY_USERNAME
         password: REGISTRY_PASSWORD
