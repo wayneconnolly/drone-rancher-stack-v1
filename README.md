@@ -10,27 +10,34 @@ Note: [Rancher v2](https://rancher.com/docs/rancher/v2.x/en/) will be a new plug
 
 ## Requirements
 
-- A repo that contains your Rancher stack. Keep it separate from your app to enable other services to leverage it. Clone it via command into a directory (see Drone Pipeline Example) 
+- A repo that contains your Rancher stack (I put mine inside of a folder called 'stack'
 -- docker-compose.yml
 -- rancher-compose.yml
 - Rancher Environment set-up with at least one active host
 - Rancher Environment set-up with a stack (empty or not)
 - Rancher Environment Access and Secret Keys
 
-## Usage
-The plugin requires the following 
+## Parameter Reference
+The plugin requires the following:
 
- - image: dubc/drone-rancher-stack-v1  
- - url: rancher.domain.com
-	 - The url where your rancher resides
- - stack: app-staging
-	 - This stack must already exist in your rancher environment
- - accesskey: RANCHER_ACCESS_KEY
-	 - Your Rancher environment Access_Key
- - secretkey: RANCHER_SECRET_KEY
-	 - Your Rancher environment Secret_Key
- - pull: true
-	 - Makes sure you get the latest plugin version 
+    image
+dubc/drone-rancher-stack-v1  
+
+    url
+The url where your rancher resides. E.g rancher.domain.com
+
+    stack
+This stack must already exist in your rancher environment. E.g app-staging
+
+    accesskey
+Your Rancher environment Access_Key
+
+    secretkey
+Your Rancher environment Secret_Key
+
+    pull: true
+
+Makes sure you get the latest plugin version
 
 ## Drone Pipeline Example
 
@@ -51,12 +58,12 @@ The plugin requires the following
         insecure: true
         pull: true
             
-      rancher-docit-staging-upgrade:
+      rancher-v1-staging-upgrade:
         image: dubc/drone-rancher-stack-v1
         url: rancher.domain.com
+        stack: app-staging        
         accesskey: RANCHER_ACCESS_KEY
         secretkey: RANCHER_SECRET_KEY
-        stack: app-staging
         pull: true
 
 
@@ -116,3 +123,4 @@ The plugin requires the following
 - Rancher compose is pre-configured to force stack upgrade which will also create the stack if it doesn't exist
 - Rancher Compose is baked into the plugin container and isn't configurable as it is the latest for the Rancher 1.6 stable
 - Future versions will not take into account Rancher 2.1, I will create a new plugin for it called dubc/drone-rancher-stack-v2
+
