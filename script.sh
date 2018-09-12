@@ -8,9 +8,4 @@ echo "docker-compose.yml @ ${DOCKER_COMPOSE}"
 cat ${DOCKER_COMPOSE}
 echo ""
 echo "Deploying Rancher Stack with force upgrade"
-/bin/rancher \
- --url http://${PLUGIN_URL} \
- --access-key ${PLUGIN_ACCESSKEY} \
- --secret-key ${PLUGIN_SECRETKEY} \
- up --stack ${PLUGIN_STACK} -d  -f ${DOCKER_COMPOSE} --rancher-file ${RANCHER_COMPOSE} \
- --pull --force-recreate --confirm-upgrade
+/bin/rancher --url http://${PLUGIN_URL} --access-key ${PLUGIN_ACCESSKEY} --secret-key ${PLUGIN_SECRETKEY} up --stack ${PLUGIN_STACK} -d -f ${DOCKER_COMPOSE} --rancher-file ${RANCHER_COMPOSE} --pull --force-recreate --confirm-upgrade
