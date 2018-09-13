@@ -4,7 +4,7 @@ A drone.io Rancher Stack plugin to deploy/update an entire Rancher stack (not ju
 
 ## Plugin Details
 -   [Rancher v1.6 stable compatible](https://rancher.com/docs/rancher/v1.6/en/)
--   Rancher CLI v0.6.11
+-   [Rancher CLI v0.6.11](https://github.com/rancher/cli/releases/v0.6.11/)
 
 Note: [Rancher v2](https://rancher.com/docs/rancher/v2.x/en/) will be a new plugin once v2.1 stable is released. See notes at bottom.
 
@@ -130,7 +130,7 @@ pull
 
 ## Notes
 
-- Rancher compose is pre-configured to force stack upgrade which will also create the stack if it doesn't exist
-- Rancher Compose is baked into the plugin container and isn't configurable as it is the latest for the Rancher 1.6 stable
+- Rancher CLI is pre-configured to force stack upgrade which will also create the stack if it doesn't exist
+- Rancher CLI is baked into the plugin container and isn't configurable as it is the latest for the Rancher 1.6 stable
 - Future versions will not take into account Rancher 2.1, I will create a new plugin for it called dubc/drone-rancher-stack-v2
 
