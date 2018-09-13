@@ -4,7 +4,7 @@ A drone.io Rancher Stack plugin to deploy/update an entire Rancher stack (not ju
 
 ## Plugin Details
 -   [Rancher v1.6 stable compatible](https://rancher.com/docs/rancher/v1.6/en/)
--   Rancher-compose v0.12.5
+-   Rancher CLI v0.6.11
 
 Note: [Rancher v2](https://rancher.com/docs/rancher/v2.x/en/) will be a new plugin once v2.1 stable is released. See notes at bottom.
 
@@ -71,9 +71,9 @@ pull
         image: dubc/drone-rancher-stack-v1
         url: rancher.domain.com
         stack: app-staging        
--        accesskey: RANCHER_ACCESS_KEY
--        secretkey: RANCHER_SECRET_KEY
-+        secrets: [ rancher_accesskey, rancher_secretkey ]
+-       accesskey: RANCHER_ACCESS_KEY
+-       secretkey: RANCHER_SECRET_KEY
++       secrets: [ rancher_accesskey, rancher_secretkey ]
         pull: true
 ```
 
