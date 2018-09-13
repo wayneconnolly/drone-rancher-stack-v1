@@ -17,6 +17,15 @@ Note: [Rancher v2](https://rancher.com/docs/rancher/v2.x/en/) will be a new plug
 - Rancher Environment set-up with a stack (empty or not)
 - Rancher Environment Access and Secret Keys
 
+## Secret Reference
+Optional secrets
+
+rancher_accesskey
+: Your Rancher environment Access_Key
+
+rancher_secretkey
+: Your Rancher environment Secret_Key
+
 ## Parameter Reference
 The plugin requires the following:
 
@@ -40,6 +49,7 @@ pull
 
 ## Drone Pipeline Example
 
+```diff
     pipeline:
       compile-javascript:
         image: node:8.9.4
@@ -61,10 +71,11 @@ pull
         image: dubc/drone-rancher-stack-v1
         url: rancher.domain.com
         stack: app-staging        
-        accesskey: RANCHER_ACCESS_KEY
-        secretkey: RANCHER_SECRET_KEY
+-        accesskey: RANCHER_ACCESS_KEY
+-        secretkey: RANCHER_SECRET_KEY
++        secrets: [ rancher_accesskey, rancher_secretkey ]
         pull: true
-
+```
 
 
 ## Drone Step Output
