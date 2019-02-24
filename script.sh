@@ -20,11 +20,12 @@ echo "docker-compose.yml @ ${DOCKER_COMPOSE}"
 cat ${DOCKER_COMPOSE}
 echo ""
 
-/bin/rancher --url http://${PLUGIN_URL} --access-key ${ACCESSKEY} --secret-key ${SECRETKEY} stacks ls > status
+/bin/rancher --url http://${PLUGIN_URL} --access-key ${ACCESSKEY} --secret-key ${SECRETKEY} stacks ls > /status
 
-if grep -q degraded status; then
+if grep -q degraded /status; then
     echo 'Stack is degraded. Killing stack now!'
-    ID=`sed -e 's/\s.*$//' status`
+    sed '/degraded/!d' /status
+    ID=`sed -e 's/\s.*$//' /status`
     /bin/rancher --url http://${PLUGIN_URL} --access-key ${ACCESSKEY} --secret-key ${SECRETKEY} rm $ID
 else
     echo 'Stack healthy or not found. Creating/Updating stack with force upgrade'
