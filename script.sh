@@ -28,6 +28,8 @@ if grep -q degraded /status; then
     ID=`sed -e 's/\s.*$//' /status`
     /bin/rancher --url http://${PLUGIN_URL} --access-key ${ACCESSKEY} --secret-key ${SECRETKEY} rm $ID
     sleep 60s
+    echo 'Rebuilding new stack'
+    /bin/rancher --url http://${PLUGIN_URL} --access-key ${ACCESSKEY} --secret-key ${SECRETKEY} up --stack ${PLUGIN_STACK} -d -f ${DOCKER_COMPOSE} --rancher-file ${RANCHER_COMPOSE} --pull --force-recreate --confirm-upgrade
 else
     echo 'Stack healthy or not found. Creating/Updating stack with force upgrade'
     /bin/rancher --url http://${PLUGIN_URL} --access-key ${ACCESSKEY} --secret-key ${SECRETKEY} up --stack ${PLUGIN_STACK} -d -f ${DOCKER_COMPOSE} --rancher-file ${RANCHER_COMPOSE} --pull --force-recreate --confirm-upgrade
