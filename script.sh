@@ -23,10 +23,11 @@ echo ""
 /bin/rancher --url http://${PLUGIN_URL} --access-key ${ACCESSKEY} --secret-key ${SECRETKEY} stacks ls > /status
 
 if grep -q degraded /status; then
-    echo 'Stack is degraded. Killing stack now!'
+    echo 'Stack is degraded. Deleting stack now!'
     sed -i '/degraded/!d' /status
     ID=`sed -e 's/\s.*$//' /status`
     /bin/rancher --url http://${PLUGIN_URL} --access-key ${ACCESSKEY} --secret-key ${SECRETKEY} rm $ID
+    echo 'Sleeping for 60 seconds whilst Rancher deletes the stack.'
     sleep 60s
     echo 'Rebuilding new stack'
     /bin/rancher --url http://${PLUGIN_URL} --access-key ${ACCESSKEY} --secret-key ${SECRETKEY} up --stack ${PLUGIN_STACK} -d -f ${DOCKER_COMPOSE} --rancher-file ${RANCHER_COMPOSE} --pull --force-recreate --confirm-upgrade
