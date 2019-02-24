@@ -24,9 +24,10 @@ echo ""
 
 if grep -q degraded /status; then
     echo 'Stack is degraded. Killing stack now!'
-    sed '/degraded/!d' /status
+    sed -i '/degraded/!d' /status
     ID=`sed -e 's/\s.*$//' /status`
     /bin/rancher --url http://${PLUGIN_URL} --access-key ${ACCESSKEY} --secret-key ${SECRETKEY} rm $ID
+    sleep 60s
 else
     echo 'Stack healthy or not found. Creating/Updating stack with force upgrade'
     /bin/rancher --url http://${PLUGIN_URL} --access-key ${ACCESSKEY} --secret-key ${SECRETKEY} up --stack ${PLUGIN_STACK} -d -f ${DOCKER_COMPOSE} --rancher-file ${RANCHER_COMPOSE} --pull --force-recreate --confirm-upgrade
